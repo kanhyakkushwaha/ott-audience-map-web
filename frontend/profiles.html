@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Profiles</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">👥 Cluster Profiles</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="upload.html">Upload</a></li>
+      <li><a class="active" href="profiles.html">Profiles</a></li>
+    </ul>
+  </nav>
+
+  <section class="profiles-container" id="profiles"></section>
+
+  <script>
+  (function(){
+    const results = JSON.parse(localStorage.getItem('results') || '{}');
+    const container = document.getElementById('profiles');
+    if (!results.cluster_profiles) {
+      container.innerHTML = '<p style="text-align:center;color:#ccc">No profiles available.</p>';
+      return;
+    }
+    results.cluster_profiles.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'profile-card';
+      card.innerHTML = `
+        <h3>Cluster ${p.cluster}</h3>
+        <p><b>Size:</b> ${p.size}</p>
+        <p><b>Top OTT:</b> ${p.ott || 'N/A'}</p>
+        <p><b>Genre:</b> ${p.genre || 'N/A'}</p>
+        <p><b>Avg Time:</b> ${p.avg_time ? p.avg_time.toFixed(2) + ' hrs' : 'N/A'}</p>
+        <a class="btn" href="/api/download/${results.run_id}">Download Cluster Report</a>
+      `;
+      container.appendChild(card);
+    });
+  })();
+  </script>
+
+  <footer></footer>
+</body>
+</html>

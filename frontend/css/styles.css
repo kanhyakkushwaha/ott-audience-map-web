@@ -1,0 +1,53 @@
+/* frontend/css/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+:root {
+  --bg: #0f1114;
+  --card: rgba(255,255,255,0.03);
+  --text: #e6e6e6;
+  --muted: #9aa0a6;
+  --accent: #ff5f13;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.navbar {
+  display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:#141417;border-bottom:1px solid rgba(255,255,255,0.02);
+}
+.navbar .logo { font-weight:600; color:var(--text); }
+.navbar ul { list-style:none; display:flex; gap:18px; margin:0; padding:0; }
+.navbar a { color:var(--text); text-decoration:none; transition:color .2s; }
+.navbar a:hover, .navbar .active { color:var(--accent); }
+.hero { text-align:center; padding:80px 20px; }
+.hero h1 { font-size:2.2rem; margin:0 0 12px; }
+.hero p { color:var(--muted); max-width:800px; margin:0 auto 20px; }
+
+.cta { margin-top:18px; display:flex; gap:14px; justify-content:center; }
+.btn, .btn-outline {
+  padding:12px 22px; border-radius:999px; border:2px solid var(--accent); text-decoration:none; display:inline-block;
+}
+.btn { background:var(--accent); color:#fff; }
+.btn-outline { color:var(--text); background:transparent; }
+.btn:hover { opacity:0.95; transform:translateY(-2px); }
+
+.upload-container, .results, .insights { padding:40px 20px; text-align:center; }
+.upload-container input[type=file], input[type=range] { margin-top:14px; display:block; margin-left:auto; margin-right:auto; }
+
+.profile-card {
+  background:var(--card);
+  padding:18px; border-radius:12px; width:260px; color:var(--text);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5); margin:10px;
+}
+.profiles-container { display:flex; flex-wrap:wrap; justify-content:center; gap:18px; padding:30px; }
+
+footer { text-align:center; padding:20px; color:var(--muted); border-top:1px solid rgba(255,255,255,0.02); margin-top:40px; }
+
+/* responsive */
+@media (max-width:768px) {
+  .hero { padding:40px 12px; }
+  .navbar ul { display:none; }
+}

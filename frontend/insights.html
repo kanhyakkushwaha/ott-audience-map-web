@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Insights</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">💡 Insights</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="upload.html">Upload</a></li>
+      <li><a href="insights.html" class="active">Insights</a></li>
+    </ul>
+  </nav>
+
+  <section class="insights">
+    <div id="insightArea"></div>
+  </section>
+
+  <script>
+  (function(){
+    const res = JSON.parse(localStorage.getItem('results') || '{}');
+    const area = document.getElementById('insightArea');
+    if (!res.cluster_profiles) {
+      area.innerHTML = '<p style="color:#ccc;text-align:center">No insights available.</p>'; return;
+    }
+    let html = `<h2>Summary</h2>`;
+    res.cluster_profiles.forEach(p => {
+      html += `<p><b>Cluster ${p.cluster}:</b> size ${p.size}, top OTT: ${p.ott || 'N/A'}, genre: ${p.genre || 'N/A'}, avg time: ${p.avg_time ? p.avg_time.toFixed(2) + ' hrs' : 'N/A'}</p>`;
+    });
+    html += `<h3>Metrics</h3><p>Silhouette: ${res.silhouette} | Davies-Bouldin: ${res.db_index}</p>`;
+    area.innerHTML = html;
+  })();
+  </script>
+
+  <footer></footer>
+</body>
+</html>
